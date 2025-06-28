@@ -11,7 +11,8 @@ const NoticeBoardPage = () => {
   const [notices, setNotices] = useState([]);
   const [reminders, setReminders] = useState([]);
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const userRaw = localStorage.getItem("user");
+  const user = userRaw ? JSON.parse(userRaw) : null;
   const groupId = localStorage.getItem("groupId");
 
   const handlePostNotice = async (e) => {
@@ -27,7 +28,10 @@ const NoticeBoardPage = () => {
       setMessage("");
       fetchNotices();
     } catch (err) {
-      console.error("Failed to post notice", err);
+      if (process.env.NODE_ENV !== "production") {
+        console.error("Failed to post notice", err);
+      }
+      alert("Something went wrong. Please try again.");
     }
   };
 
@@ -46,7 +50,7 @@ const NoticeBoardPage = () => {
       setDueDate("");
       fetchReminders();
     } catch (err) {
-      console.error("Failed to post reminder", err);
+      alert("Failed to post reminder");
     }
   };
 
@@ -55,7 +59,7 @@ const NoticeBoardPage = () => {
       await axios.delete(`/api/notices/delete/${noticeId}`);
       fetchNotices();
     } catch (err) {
-      console.error("Failed to delete notice", err);
+      alert("Failed to delete notice");
     }
   };
 
@@ -64,7 +68,7 @@ const NoticeBoardPage = () => {
       const res = await axios.get(`/api/notices/${groupId}`);
       setNotices(res.data);
     } catch (err) {
-      console.error("Failed to fetch notices", err);
+      alert("Failed to fetch notices");
     }
   };
 
@@ -73,11 +77,12 @@ const NoticeBoardPage = () => {
       const res = await axios.get(`/api/reminders/${groupId}`);
       setReminders(res.data);
     } catch (err) {
-      console.error("Failed to fetch reminders", err);
+      alert("Failed to fetch reminders");
     }
   };
 
   useEffect(() => {
+    if (!user || !groupId) return;
     fetchNotices();
     fetchReminders();
   }, []);
@@ -220,6 +225,9 @@ const NoticeBoardPage = () => {
             )}
           </div>
         </div>
+      <p className="text-center text-sm text-gray-600 mt-10 mb-4">
+        © {new Date().getFullYear()} Adesh Nagare | Built with 💙 as RoomSync. All rights reserved.
+      </p>
       </div>
     </>
   );

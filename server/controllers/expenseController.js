@@ -1,10 +1,9 @@
 const Expense = require("../models/Expense");
+const Group = require("../models/Group");
 
 exports.addExpense = async (req, res) => {
   try {
     const { title, amount, paidBy, splitBetween, groupId } = req.body;
-
-    console.log("Incoming Expense Payload:", req.body); // 🔍 Log payload
 
     if (!title || !amount || !paidBy || !splitBetween || !groupId) {
       return res.status(400).json({ message: "Missing required fields" });
@@ -20,11 +19,9 @@ exports.addExpense = async (req, res) => {
 
     res.status(201).json(newExpense);
   } catch (error) {
-    console.error("Error in addExpense:", error); // 🔍 Log actual error
     res.status(500).json({ message: "Error adding expense", error: error.message });
   }
 };
-
 
 exports.getGroupExpenses = async (req, res) => {
   const { groupId } = req.params;
@@ -51,22 +48,29 @@ exports.getBalances = async (req, res) => {
 
     const balances = {};
 
-    // Initialize balances for each member
     group.members.forEach((member) => {
       balances[member._id] = { name: member.name, balance: 0 };
     });
 
-    // Calculate net balance for each member
     for (const expense of expenses) {
       const share = expense.amount / expense.splitBetween.length;
 
       expense.splitBetween.forEach((userId) => {
-        if (userId.toString() !== expense.paidBy.toString()) {
-          balances[userId].balance -= share;
+        const uid = userId.toString();
+        const paidById = expense.paidBy.toString();
+
+        if (uid !== paidById) {
+          if (balances[uid]) {
+            balances[uid].balance -= share;
+          }
         }
       });
+      const paidByStr = expense.paidBy.toString();
+      const payerShare = share * (expense.splitBetween.length - 1);
 
-      balances[expense.paidBy].balance += expense.amount - share * (expense.splitBetween.length - 1);
+      if (balances[paidByStr]) {
+        balances[paidByStr].balance += expense.amount - payerShare;
+      }
     }
 
     const result = Object.entries(balances).map(([userId, { name, balance }]) => ({
@@ -77,7 +81,6 @@ exports.getBalances = async (req, res) => {
 
     res.status(200).json(result);
   } catch (error) {
-    console.error("Error in getBalances:", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };

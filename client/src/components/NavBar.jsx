@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react"; // Make sure to install lucide-react or replace with any icon
+import { Menu, X } from "lucide-react";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -19,10 +19,8 @@ const NavBar = () => {
   return (
     <nav className="bg-white shadow-md border-b border-gray-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-        {/* Logo */}
         <div className="text-xl font-semibold text-blue-600">RoomSync</div>
 
-        {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-4 text-sm sm:text-base">
           <Link
             to="/expenses"
@@ -62,7 +60,6 @@ const NavBar = () => {
           </button>
         </div>
 
-        {/* Mobile Hamburger */}
         <button
           className="md:hidden text-gray-600"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -71,7 +68,6 @@ const NavBar = () => {
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
       {menuOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2 text-sm">
           <Link
