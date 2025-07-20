@@ -4,6 +4,7 @@ import axios from "../api/axios";
 import NavBar from "../components/NavBar";
 
 const GroupSelectPage = () => {
+  const [groupName, setGroupName] = useState("");
   const [joinCode, setJoinCode] = useState("");
   const [newGroupCode, setNewGroupCode] = useState("");
   const [showCode, setShowCode] = useState(false);
@@ -26,7 +27,7 @@ const GroupSelectPage = () => {
         setNewGroupCode(res.data.groupCode);
         setShowCode(true);
       } else {
-        navigate("/expenses");
+        navigate("/home");
       }
     } else {
       alert("Group created but groupId not returned by server.");
@@ -45,7 +46,7 @@ const GroupSelectPage = () => {
 
       if (res.data.groupId) {
         localStorage.setItem("groupId", res.data.groupId);
-        navigate("/expenses");
+        navigate("/home");
       } else {
         alert("Group joined but groupId not returned by server.");
       }

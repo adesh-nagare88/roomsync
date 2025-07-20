@@ -23,6 +23,17 @@ const NavBar = () => {
 
         <div className="hidden md:flex items-center space-x-4 text-sm sm:text-base">
           <Link
+            to="/home"
+            className={`px-3 py-2 rounded-lg ${
+              isActive("/home")
+                ? "bg-blue-100 text-blue-700 font-medium"
+                : "hover:bg-gray-100 text-gray-700"
+            } transition`}
+          >
+             Home
+          </Link>
+
+          <Link
             to="/expenses"
             className={`px-3 py-2 rounded-lg ${
               isActive("/expenses")
