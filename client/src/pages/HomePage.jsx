@@ -87,7 +87,7 @@ const HomePage = () => {
           <div className="flex flex-col items-center space-y-2">
             {group?.dp && (
               <img
-                src={`http://localhost:5000${group.dp}`}
+                src={`https://roomsync-backend.onrender.com${group.dp}`}
                 alt="Group DP"
                 className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border"
               />
