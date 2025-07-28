@@ -20,7 +20,7 @@ const HomePage = () => {
 
   const fetchGroup = async () => {
     try {
-      const res = await axios.get(`/api/group/${groupId}`);
+      const res = await axios.get(`/group/${groupId}`);
       setGroup(res.data);
       setNewName(res.data.name);
       console.log("Group Data:", res.data);
@@ -35,7 +35,7 @@ const HomePage = () => {
 
   const handleUpdateGroupName = async () => {
     try {
-      await axios.put(`/api/group/${groupId}/name`, { name: newName });
+      await axios.put(`/group/${groupId}/name`, { name: newName });
       setEditingName(false);
       fetchGroup();
     } catch {
@@ -52,7 +52,7 @@ const HomePage = () => {
 
     try {
       setUploading(true);
-      await axios.post(`/api/group/upload-dp/${groupId}`, formData, {
+      await axios.post(`/group/upload-dp/${groupId}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       fetchGroup();
@@ -69,7 +69,7 @@ const HomePage = () => {
 
     try {
       setRemoving(memberId);
-      await axios.put(`/api/group/${groupId}/remove-member`, { memberId });
+      await axios.put(`/group/${groupId}/remove-member`, { memberId });
       fetchGroup();
     } catch {
       alert("Failed to remove member.");

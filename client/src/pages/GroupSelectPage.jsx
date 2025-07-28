@@ -16,7 +16,7 @@ const GroupSelectPage = () => {
   const handleCreateGroup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/group/create", {
+      const res = await axios.post("/group/create", {
         name: groupName,
         userId: user.id,
       });
@@ -39,7 +39,7 @@ const GroupSelectPage = () => {
   const handleJoinGroup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/group/join", {
+      const res = await axios.post("/group/join", {
         code: joinCode,
         userId: user.id,
       });

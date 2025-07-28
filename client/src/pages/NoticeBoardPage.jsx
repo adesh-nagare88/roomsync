@@ -18,7 +18,7 @@ const NoticeBoardPage = () => {
   const handlePostNotice = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/notices/create", {
+      await axios.post("/notices/create", {
         groupId,
         title,
         message,
@@ -38,7 +38,7 @@ const NoticeBoardPage = () => {
   const handlePostReminder = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/reminders/create", {
+      await axios.post("/reminders/create", {
         groupId,
         message: reminderText,
         type: reminderType,
@@ -56,7 +56,7 @@ const NoticeBoardPage = () => {
 
   const handleDeleteNotice = async (noticeId) => {
     try {
-      await axios.delete(`/api/notices/delete/${noticeId}`);
+      await axios.delete(`/notices/delete/${noticeId}`);
       fetchNotices();
     } catch (err) {
       alert("Failed to delete notice");
@@ -65,7 +65,7 @@ const NoticeBoardPage = () => {
 
   const fetchNotices = async () => {
     try {
-      const res = await axios.get(`/api/notices/${groupId}`);
+      const res = await axios.get(`/notices/${groupId}`);
       setNotices(res.data);
     } catch (err) {
       alert("Failed to fetch notices");
@@ -74,7 +74,7 @@ const NoticeBoardPage = () => {
 
   const fetchReminders = async () => {
     try {
-      const res = await axios.get(`/api/reminders/${groupId}`);
+      const res = await axios.get(`/reminders/${groupId}`);
       setReminders(res.data);
     } catch (err) {
       alert("Failed to fetch reminders");

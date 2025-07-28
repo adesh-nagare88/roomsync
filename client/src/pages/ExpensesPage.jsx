@@ -29,7 +29,7 @@ const ExpensesPage = () => {
 
   const fetchExpenses = async () => {
     try {
-      const res = await axios.get(`/api/expenses/${groupId}`);
+      const res = await axios.get(`/expenses/${groupId}`);
       setExpenses(res.data);
     } catch (err) {
       alert("Something went wrong. Please try again.");
@@ -38,7 +38,7 @@ const ExpensesPage = () => {
 
   const fetchBalances = async () => {
     try {
-      const res = await axios.get(`/api/expenses/${groupId}/balances`);
+      const res = await axios.get(`/expenses/${groupId}/balances`);
       setBalances(res.data);
     } catch (err) {
       alert("Something went wrong. Please try again.");
@@ -47,7 +47,7 @@ const ExpensesPage = () => {
 
   const fetchGroupMembers = async () => {
     try {
-      const res = await axios.get(`/api/group/${groupId}`);
+      const res = await axios.get(`/group/${groupId}`);
       setGroupMembers(res.data.members);
     } catch (err) {
       const message = err.response?.data?.message || err.message || "Something went wrong. Please try again.";
@@ -68,7 +68,7 @@ const ExpensesPage = () => {
     );
 
     try {
-      await axios.post("/api/expenses/add", {
+      await axios.post("/expenses/add", {
         title: title.trim(),
         amount: parsedAmount,
         paidBy: user.id,
