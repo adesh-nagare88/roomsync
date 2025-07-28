@@ -14,7 +14,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: [import.meta.env.FRONTEND_URL], // Add your frontend URL
+  origin: ["https://roomsync.vercel.app"], // Add your frontend URL
   credentials: true,
 }));
 app.use(express.json());
