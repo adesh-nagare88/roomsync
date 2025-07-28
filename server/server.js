@@ -14,11 +14,10 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin:"*",
-  credentials: true,              
+  origin: ["https://roomsync.vercel.app"], // Add your frontend URL
+  credentials: true,
 }));
 app.use(express.json());
-
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Routes
@@ -28,15 +27,19 @@ app.use("/api/expenses", expenseRoutes);
 app.use("/api/notices", noticeRoutes);
 app.use("/api/reminders", reminderRoutes);
 
-// DB + Server
-let isConnected = false;
-async function connectDB() {
-  if (isConnected) return;
-  await mongoose.connect(process.env.MONGO_URI);
-  isConnected = true;
+// DB + Start server
+const PORT = process.env.PORT || 10000;
+
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
   console.log("MongoDB connected");
-}
-connectDB();
-
-
-module.exports = app;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+})
+.catch(err => {
+  console.error("MongoDB connection error:", err);
+});
