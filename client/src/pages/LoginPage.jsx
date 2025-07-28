@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const endpoint = isLogin ? "/api/auth/login" : "/api/auth/register";
+    const endpoint = isLogin ? "/auth/login" : "/auth/register";
 
     try {
       setIsSubmitting(true);
