@@ -92,6 +92,7 @@ const HomePage = () => {
                 className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border"
               />
             )}
+            console.log("DP Path:", group.dp);
             {isAdmin && (
               <label className="text-sm text-blue-600 hover:underline cursor-pointer">
                 {uploading ? "Uploading..." : "Change Group Picture"}
