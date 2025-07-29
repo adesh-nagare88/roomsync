@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar";
 const ExpensesPage = () => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
+  const [splitMembers, setSplitMembers] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [balances, setBalances] = useState([]);
   const [groupMembers, setGroupMembers] = useState([]);
@@ -63,9 +64,12 @@ const ExpensesPage = () => {
       return;
     }
 
-    const memberIds = groupMembers.map((member) =>
-      typeof member === "string" ? member : member._id
-    );
+    const memberIds = splitMembers;
+    if (memberIds.length === 0) {
+      alert("Please select at least one member to split with.");
+      return;
+    }
+
 
     try {
       await axios.post("/expenses/add", {
@@ -111,6 +115,30 @@ const ExpensesPage = () => {
                 className="p-3 border rounded-lg w-full"
                 required
               />
+              <div className="sm:col-span-2">
+                <label className="font-medium mb-2 block">Split Between:</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {groupMembers.map((member) => (
+                    <label key={member._id} className="flex items-center space-x-2">
+                     <input
+                       type="checkbox"
+                       value={member._id}
+                       checked={splitMembers.includes(member._id)}
+                      onChange={(e) => {
+                        const id = e.target.value;
+                        const checked = e.target.checked;
+                     
+                        setSplitMembers((prev) =>
+                          checked ? [...prev, id] : prev.filter((m) => m !== id)
+                        );
+                      }}
+                    />
+                    <span>{member.name}</span>
+                  </label>
+                ))}
+            </div>
+          </div>
+
               <div className="sm:col-span-2 flex justify-center">
                 <button
                   type="submit"
