@@ -82,6 +82,17 @@ const NavBar = () => {
       {menuOpen && (
         <div className="md:hidden px-4 pb-4 space-y-2 text-sm">
           <Link
+            to="/home"
+            className={`block px-3 py-2 rounded-lg ${
+              isActive("/home")
+                ? "bg-blue-100 text-blue-700 font-medium"
+                : "hover:bg-gray-100 text-gray-700"
+            }`}
+            onClick={() => setMenuOpen(false)}
+          >
+           Home
+         </Link>
+          <Link
             to="/expenses"
             className={`block px-3 py-2 rounded-lg ${
               isActive("/expenses")
