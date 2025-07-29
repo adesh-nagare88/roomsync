@@ -26,11 +26,13 @@ const HomePage = () => {
       console.log("Group Data:", res.data);
       console.log("group.createdBy:", res.data.createdBy);
       console.log("isAdmin:", res.data.createdBy?._id === user.id);
+      console.log("DP Path:", group.dp);
 
     } catch {
       alert("Failed to fetch group details.");
     }
   };
+
 
 
   const handleUpdateGroupName = async () => {
@@ -92,7 +94,7 @@ const HomePage = () => {
                 className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border"
               />
             )}
-            console.log("DP Path:", group.dp);
+
             {isAdmin && (
               <label className="text-sm text-blue-600 hover:underline cursor-pointer">
                 {uploading ? "Uploading..." : "Change Group Picture"}
