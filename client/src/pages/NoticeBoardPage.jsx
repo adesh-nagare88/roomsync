@@ -96,7 +96,6 @@ const NoticeBoardPage = () => {
             Notice Board & Reminders
           </h1>
 
-          {/* Post Notice */}
           <div className="bg-white p-5 sm:p-6 rounded-2xl shadow">
             <h2 className="text-xl font-semibold mb-4">Post a Notice</h2>
             <form onSubmit={handlePostNotice} className="space-y-4">
@@ -126,7 +125,6 @@ const NoticeBoardPage = () => {
             </form>
           </div>
 
-          {/* Post Reminder */}
           <div className="bg-white p-5 sm:p-6 rounded-2xl shadow">
             <h2 className="text-xl font-semibold mb-4">Create a Reminder</h2>
             <form onSubmit={handlePostReminder} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -166,7 +164,6 @@ const NoticeBoardPage = () => {
             </form>
           </div>
 
-          {/* Notices List */}
           <div className="bg-white p-5 sm:p-6 rounded-2xl shadow">
             <h2 className="text-xl font-semibold mb-4">All Notices</h2>
             {notices.length === 0 ? (
@@ -201,7 +198,6 @@ const NoticeBoardPage = () => {
             )}
           </div>
 
-          {/* Reminders List */}
           <div className="bg-white p-5 sm:p-6 rounded-2xl shadow mb-8">
             <h2 className="text-xl font-semibold mb-4">Upcoming Reminders</h2>
             {reminders.length === 0 ? (

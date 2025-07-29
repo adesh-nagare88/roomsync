@@ -95,8 +95,6 @@ const ExpensesPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto pt-8 sm:pt-12">
           <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-8">Group Expenses</h1>
-
-          {/* Add Expense */}
           <div className="bg-white p-5 sm:p-6 rounded-2xl shadow mb-8">
             <form onSubmit={handleAddExpense} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
@@ -150,7 +148,6 @@ const ExpensesPage = () => {
             </form>
           </div>
 
-          {/* Member Balances */}
           <div className="bg-white p-5 sm:p-6 rounded-2xl shadow mb-8">
             <h2 className="text-xl font-semibold mb-4 text-center sm:text-left">Member Balances</h2>
             <ul className="space-y-3">
@@ -178,7 +175,6 @@ const ExpensesPage = () => {
             </ul>
           </div>
 
-          {/* Expense List */}
           <div className="bg-white p-5 sm:p-6 rounded-2xl shadow mb-8">
             <h2 className="text-xl font-semibold mb-4 text-center sm:text-left">Transaction History</h2>
             <ul className="space-y-3">

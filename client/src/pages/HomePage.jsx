@@ -85,7 +85,6 @@ const HomePage = () => {
       <NavBar />
       <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 px-4 sm:px-6 py-10">
         <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-md p-6 sm:p-8 space-y-6">
-          {/* Group Display Picture */}
           <div className="flex flex-col items-center space-y-2">
             {group?.dp && (
               <img
@@ -109,7 +108,6 @@ const HomePage = () => {
             )}
           </div>
 
-          {/* Group Name */}
           <div className="text-center space-y-2">
             {editingName && isAdmin ? (
               <div className="flex flex-col items-center space-y-2">
@@ -154,7 +152,6 @@ const HomePage = () => {
             </p>
           </div>
 
-          {/* Member List */}
           <div>
             <h2 className="text-lg font-medium mb-4 text-center sm:text-left">Group Members</h2>
             <ul className="space-y-3">

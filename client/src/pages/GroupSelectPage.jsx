@@ -70,7 +70,7 @@ const GroupSelectPage = () => {
     <button
       onClick={() => {
         setShowCode(false);
-        navigate("/expenses"); // Redirect after closing
+        navigate("/expenses");
       }}
       className="mt-3 inline-block bg-yellow-500 text-white px-4 py-1 rounded hover:bg-yellow-600 transition"
     >
@@ -81,7 +81,6 @@ const GroupSelectPage = () => {
 
     <h2 className="text-3xl sm:text-4xl font-semibold text-center mb-4">Group Selection</h2>
 
-    {/* Create Group */}
     <div className="bg-white p-5 sm:p-6 rounded-2xl shadow">
     <form onSubmit={handleCreateGroup} className="space-y-4">
       <h3 className="text-xl font-semibold mb-2 text-center sm:text-left text-gray-700">Create a New Group</h3>
@@ -104,7 +103,6 @@ const GroupSelectPage = () => {
     </form>
     </div>
 
-    {/* Join Group */}
     <div className="bg-white p-5 sm:p-6 rounded-2xl shadow">
     <form onSubmit={handleJoinGroup} className="space-y-4 border-t pt-6">
       <h3 className="text-lg font-medium text-gray-700">Join an Existing Group</h3>
