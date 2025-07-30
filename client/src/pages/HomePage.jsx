@@ -29,7 +29,7 @@ const HomePage = () => {
       console.log("DP Path:", group.dp);
 
     } catch {
-      alert("Failed to fetch group details.");
+      console.log("Failed to fetch group details.");
     }
   };
 
